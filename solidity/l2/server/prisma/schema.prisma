@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:1234@localhost/demo"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Account {
+  id      Int     @id @unique @default(autoincrement())
+  email   String  @unique
+  fname   String 
+  lname   String 
+  addr    String  @unique
+  balance Int  // THIS NEEDS TO CHANGE
+}
+
+model InternalTransaction {
+  id        Int @id @unique @default(autoincrement())
+  from_addr String
+  to_addr   String
+  amount    Int // THIS NEEDS TO CHANGE
+}
+
+model ExternalTransaction {
+  id            Int @id @unique @default(autoincrement())
+  external_addr String
+  internal_addr String // external and internal addr would usually be the same, right?
+  amount        Int // THIS NEEDS TO CHANGE
+}

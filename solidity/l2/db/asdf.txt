@@ -1,0 +1,14 @@
+https://kb.objectrocket.com/postgresql/create-a-postgresql-docker-container-975
+
+docker pull postgres
+
+docker volume create pgdata
+
+docker volume inspect pgdata
+
+docker run -p 5432:5432 -d \
+-e POSTGRES_PASSWORD=1234 \
+-e POSTGRES_USER=postgres \
+-e POSTGRES_DB=demo \
+-v pgdata:/var/lib/postgresql/data \
+postgres
